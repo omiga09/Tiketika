@@ -1,0 +1,53 @@
+# Build artifacts
+/target/
+/build/
+
+# Logs
+/logs/
+/LOGS_IS_UNDEFINED/
+/*.log
+**/*.log
+
+# IDE noise
+/.idea/
+/*.iml
+
+# OS junk
+.DS_Store
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+/reversed_bookings_log.csv
+uploads/
+application/
