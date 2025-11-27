@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+           http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+
+    <changeSet id="12" author="omar">
+        <createTable tableName="app_image">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="image_path" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="image_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+
+            <column name="entity_type" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sub_entity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="entity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="image_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- BaseAuditable fields -->
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="submitted_at" type="TIMESTAMP"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+
+
+        </createTable>
+
+        <createIndex tableName="app_image" indexName="idx_image_id">
+            <column name="id"/>
+        </createIndex>
+
+        <createIndex tableName="app_image" indexName="idx_image_entity_type">
+            <column name="entity_type"/>
+        </createIndex>
+
+        <createIndex tableName="app_image" indexName="idx_image_entity_id">
+            <column name="entity_id"/>
+        </createIndex>
+
+        <createIndex tableName="app_image" indexName="idx_image_type">
+            <column name="image_type"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

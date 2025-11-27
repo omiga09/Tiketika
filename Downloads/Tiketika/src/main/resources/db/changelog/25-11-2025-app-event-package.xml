@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+           http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+<changeSet id="3" author="omar">
+    <createTable tableName="app_event_package">
+        <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="package_price" type="VARCHAR(255)"/>
+        <column name="packaging_max_capacity" type="INT"/>
+        <column name="package_remained" type="INT"/>
+        <column name="is_package_grove" type="TINYINT(1)"/>
+        <column name="package_group_count" type="INT"/>
+        <column name="package_offers" type="TEXT"/>
+        <column name="is_package_presale" type="TINYINT(1)"/>
+        <column name="package_postsale_price" type="VARCHAR(255)"/>
+        <column name="package_max_comp" type="INT"/>
+        <column name="package_remained_comp" type="INT"/>
+        <column name="package_postsale_date" type="TIMESTAMP"/>
+        <column name="package_name" type="VARCHAR(255)"/>
+        <column name="event_id" type="BIGINT"/>
+
+        <!-- BaseAuditable fields -->
+        <column name="created_at" type="TIMESTAMP"/>
+        <column name="updated_at" type="TIMESTAMP"/>
+        <column name="submitted_at" type="TIMESTAMP"/>
+        <column name="created_by" type="VARCHAR(255)"/>
+        <column name="updated_by" type="VARCHAR(255)"/>
+
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="app_event_package"
+                             baseColumnNames="event_id"
+                             referencedTableName="app_event"
+                             referencedColumnNames="id"
+                             constraintName="fk_eventpackage_event"/>
+
+    <createIndex tableName="app_event_package" indexName="idx_event_package_id">
+        <column name="id"/>
+    </createIndex>
+    <createIndex tableName="app_event_package" indexName="idx_event_package_price">
+        <column name="package_price"/>
+    </createIndex>
+    <createIndex tableName="app_event_package" indexName="idx_event_package_name">
+        <column name="package_name"/>
+    </createIndex>
+</changeSet>
+</databaseChangeLog>

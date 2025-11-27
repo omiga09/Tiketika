@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+           http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="1" author="omar">
+
+        <createTable tableName="app_event">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="event_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="event_venue" type="VARCHAR(255)"/>
+            <column name="event_description" type="TEXT"/>
+
+            <column name="event_country" type="VARCHAR(255)"/>
+
+            <column name="event_subdomain" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="event_start_time" type="VARCHAR(50)"/>
+            <column name="event_end_time" type="VARCHAR(50)"/>
+            <column name="event_start_date" type="VARCHAR(50)"/>
+            <column name="event_end_date" type="VARCHAR(50)"/>
+
+            <!-- Booleans as TINYINT(1) -->
+            <column name="is_event_cashless" type="TINYINT(1)"/>
+            <column name="is_event_active" type="TINYINT(1)"/>
+            <column name="is_event_recurring" type="TINYINT(1)"/>
+
+            <column name="event_recurring_by" type="VARCHAR(50)"/>
+            <column name="event_recurring_for" type="VARCHAR(50)"/>
+            <column name="event_payment_terms" type="VARCHAR(50)"/>
+
+            <column name="event_payment_percent" type="DECIMAL(19,2)"/>
+            <column name="event_payment_flat" type="DECIMAL(19,2)"/>
+
+            <column name="event_has_games" type="TINYINT(1)"/>
+            <column name="event_has_purchases" type="TINYINT(1)"/>
+            <column name="is_game_active" type="TINYINT(1)"/>
+            <column name="is_purchase_active" type="TINYINT(1)"/>
+
+
+            <!-- BaseAuditable fields -->
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="submitted_at" type="TIMESTAMP"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createIndex tableName="app_event" indexName="idx_event_id">
+            <column name="id"/>
+        </createIndex>
+
+        <createIndex tableName="app_event" indexName="idx_event_name">
+            <column name="event_name"/>
+        </createIndex>
+
+        <createIndex tableName="app_event" indexName="idx_event_subdomain">
+            <column name="event_subdomain"/>
+        </createIndex>
+
+    </changeSet>
+</databaseChangeLog>

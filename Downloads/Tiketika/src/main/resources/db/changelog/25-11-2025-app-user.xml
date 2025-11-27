@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+           http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="7" author="omar">
+        <createTable tableName="app_user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)" />
+            <column name="last_name" type="VARCHAR(50)" />
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="phone" type="VARCHAR(15)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="user_type" type="VARCHAR(50)"/>
+
+            <column name="is_email_verified" type="TINYINT(1)"/>
+            <column name="is_account_active" type="TINYINT(1)"/>
+
+            <column name="password_attempts" type="INT"/>
+            <column name="password" type="VARCHAR(255)"/>
+
+            <column name="is_account_locked" type="TINYINT(1)"/>
+            <column name="is_password_expired" type="TINYINT(1)"/>
+            <column name="password_changed_at" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="expiry_date" type="DATE"/>
+
+            <!-- BaseAuditable fields -->
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="submitted_at" type="TIMESTAMP"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="updated_by" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createIndex indexName="idx_user_email"
+                     tableName="app_user">
+            <column name="email"/>
+        </createIndex>
+
+        <createIndex indexName="idx_user_phone"
+                     tableName="app_user">
+            <column name="phone"/>
+        </createIndex>
+
+        <createIndex indexName="idx_user_is_active"
+                     tableName="app_user">
+            <column name="is_account_active"/>
+        </createIndex>
+
+    </changeSet>
+</databaseChangeLog>

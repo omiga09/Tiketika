@@ -1,0 +1,115 @@
+spring:
+  application:
+    name: Tiketika
+
+  # === DATABASE ===
+  datasource:
+    url: jdbc:mysql://localhost:3306/ticket_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: omar
+    password: omar@3000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # === JPA & HIBERNATE ===
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+
+  # === LIQUIBASE ===
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+    clear-checksums: true
+
+  # === FILE UPLOAD ===
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  # === EMAIL  ===
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "info@mmconnectafrica.com"
+    password: "drwf uylh sgid zbzm"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 10000
+          timeout: 20000
+          writetimeout: 20000
+    test-connection: true
+
+  # === JACKSON ===
+  jackson:
+    default-property-inclusion: non_null
+
+# === APP CUSTOM CONFIG ===
+app:
+  upload-dir: ./uploads
+  logging:
+    dir: ./application/logs
+  jwt:
+    secret: ${JWT_SECRET:your-very-secure-jwt-secret-key-256-bits-long}
+    expiration-ms: 86400000
+  otp:
+    expiry-minutes: 3
+    max-attempts: 3
+    resend-cooldown-seconds: 60
+  sms:
+    url: https://bulksms.fasthub.co.tz
+    clientId: "54637ab2-1ab8-4bf7-b6e8-ec8969b6decd"
+    clientSecret: "e3e568c6-5103-4447-b830-62ac747d470b"
+    source: KUZACAPITAL
+    enabled: true
+
+
+# === SERVER ===
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# === LOGGING ===
+logging:
+  level:
+    com.kuza.kuzasokoni: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.mail: DEBUG
+    com.sun.mail: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# === CORS ===
+cors:
+  allowed-origins:
+    - http://localhost:3000
+    - http://localhost:3001
+    - https://kuza-sokoni.com
+    - https://admin.kuza-sokoni.com
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: "*"
+  allow-credentials: true
+
+# === ACTUATOR ===
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+  debug: false

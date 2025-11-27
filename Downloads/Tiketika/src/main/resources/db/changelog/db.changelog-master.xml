@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <include file="db/changelog/25-11-2025-app-entity-owner.xml"/>
+    <include file="db/changelog/25-11-2025-app-kyc-detail.xml"/>
+
+    <include file="db/changelog/25-11-2025-app-user.xml"/>
+    <include file="db/changelog/25-11-2025-app-user-entity.xml"/>
+    <include file="db/changelog/25-11-2025-app-otp.xml"/>
+    <include file="db/changelog/25-11-2025-app-image.xml"/>
+    <include file="db/changelog/25-11-2025-app-event.xml"/>
+    <include file="db/changelog/25-11-2025-app-event-package.xml"/>
+    <include file="db/changelog/25-11-2025-app-event-message.xml"/>
+    <include file="db/changelog/25-11-2025-app-event-product.xml"/>
+    <include file="db/changelog/25-11-2025-app-event-booking.xml"/>
+    <include file="db/changelog/25-11-2025-app-event-transaction.xml"/>
+    <include file="db/changelog/25-11-2025-app-role.xml"/>
+    <include file="db/changelog/25-11-2025-app-permission.xml"/>
+    <include file="db/changelog/25-11-2025-app-role-permission.xml"/>
+    <include file="db/changelog/25-11-2025-user-entity-role.xml"/>
+
+</databaseChangeLog>
